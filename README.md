@@ -1,0 +1,6 @@
+# Contact book
+## It's my pet project for learn Python
+## TODO
+- [ ] Add function for get all contacts
+- [ ] Add upload in json or xml format
+- [ ] Add graphical interface(web)

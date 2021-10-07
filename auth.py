@@ -2,9 +2,6 @@ import getpass
 from models import Session, User
 from sqlalchemy import and_
 
-
-
-
 def login_user(func):
     def login():
         resp = input("Are you registered?(y|n): ")
