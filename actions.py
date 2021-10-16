@@ -1,5 +1,5 @@
 from models import Session, Contact
-
+from sqlalchemy import and_
 
 def add_contact(name, phone, owner):
     s = Session()
@@ -10,7 +10,8 @@ def add_contact(name, phone, owner):
 
 def get_contact(name, owner) -> (str, str):
     s = Session()
-    phone = s.query(Contact).filter(Contact.name == name).first()
+    print(owner)
+    phone = s.query(Contact).filter(and_(Contact.name == name, Contact.user_id == owner)).first()
     if phone is not None:
         return phone.phone
     return None

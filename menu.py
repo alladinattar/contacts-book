@@ -1,13 +1,14 @@
 from models import Contact, Session
 from actions import add_contact, get_contact, get_all_contacts, delete_contact
+from auth import login_user
 
-
+@login_user
 def menu(user_id: int):
     print("Select action:\n1. Get contact\n2. Add contact\n3. Get all contacts\n4. Delete contact\n")
     action = input("Enter: ")
     if action == '1':  # Get contact
         name = input("Contact name: ")
-        phone = get_contact(name, 'root')
+        phone = get_contact(name, user_id)
         if phone is not None:
             print('{}: {}'.format(name.capitalize(), phone))
         else:
@@ -16,7 +17,7 @@ def menu(user_id: int):
     elif action == '2':  # Add contact
         name = input("Name of new contact: ")
         phone = input("Phone of new contact: ")
-        add_contact(name.capitalize(), phone, 1)
+        add_contact(name.capitalize(), phone, user_id)
 
     elif action == '3':  # Get all contacts
         s = Session()

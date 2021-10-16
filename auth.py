@@ -2,6 +2,7 @@ import getpass
 from models import Session, User
 from sqlalchemy import and_
 
+
 def login_user(func):
     def login():
         resp = input("Are you registered?(y|n): ")
@@ -9,8 +10,8 @@ def login_user(func):
             username = input("Input login: ")
             password = getpass.getpass("Input password: ")
             s = Session()
-            id = s.query(User).filter(and_(User.username == username, User.password == password)).first()
-            if id is None:
+            user = s.query(User).filter(and_(User.username == username, User.password == password)).first()
+            if user is None:
                 print("No such user :(")
                 resp = input("Register?(y|n) ")
                 if resp == 'y':
@@ -18,19 +19,24 @@ def login_user(func):
                 else:
                     exit(0)
             else:
-                func(id)
+                func(user.id)
         elif resp == 'n':
             sign_up()
             login_user(func)
-    return login()
+
+    return login
 
 
 def sign_up():
     print("Sign Up!")
-    name = input("Name: ")
-    lastname = input("Last Name: ")
+    name = input("Username: ")
     email = input("Email: ")
     password = getpass.getpass("Password: ")
     confirmpassword = getpass.getpass("Confirm password: ")
     if password != confirmpassword:
         print("Password mismatch")
+        return
+    user = User(username=name, email=email, password=password)
+    s = Session()
+    s.add(user)
+    s.commit()
