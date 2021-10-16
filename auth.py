@@ -17,11 +17,12 @@ def login_user(func):
                     sign_up()
                 else:
                     exit(0)
-
+            else:
+                func(id)
         elif resp == 'n':
             sign_up()
             login_user(func)
-
+    return login()
 
 
 def sign_up():
