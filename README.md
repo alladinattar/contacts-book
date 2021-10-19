@@ -3,4 +3,4 @@
 ## TODO
 - [x] Add function for get all contacts
 - [ ] Add upload in json or xml format
-- [ ] Add graphical interface(web)
+- [ ] Add telegram integration
