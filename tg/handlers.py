@@ -1,6 +1,5 @@
-from . import tg
 from telegram.ext import CallbackContext, ConversationHandler
-from actions import get_contact, add_contact
+from actions import get_contact, add_contact, get_all_contacts
 from telegram import Update, ReplyKeyboardRemove
 import logging
 
@@ -50,9 +49,18 @@ def add_phone(update: Update, context: CallbackContext) -> int:
     return ConversationHandler.END
 
 
+def get_all(update: Update, context: CallbackContext) -> int:
+    all_contacts = ''
+    contacts = get_all_contacts(update.message.from_user.id)
+    for i in range(len(contacts)):
+        all_contacts += '{}. {} - {}\n'.format(i+1, contacts[i].name, contacts[i].phone)
+    update.message.reply_text(all_contacts)
+
+
 def cancel(update: Update, context: CallbackContext) -> int:
     user = update.message.from_user
     logger.info("User %s canceled the conversation.", user.first_name)
+    context.user_data.clear()
     update.message.reply_text(
         'Bye! I hope we can talk again some day.', reply_markup=ReplyKeyboardRemove()
     )

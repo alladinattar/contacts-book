@@ -41,8 +41,11 @@ def start_bot() -> None:
         fallbacks=[CommandHandler('cancel', handlers.cancel)],
     )
 
+    get_all_contacts = MessageHandler(Filters.regex('Get all contacts'), handlers.get_all)
+
     dispatcher.add_handler(get_contact_handler)
     dispatcher.add_handler(add_contact_handler)
+    dispatcher.add_handler(get_all_contacts)
 
     start_handler = CommandHandler('start', start)
     dispatcher.add_handler(start_handler)

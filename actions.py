@@ -20,8 +20,8 @@ def get_contact(name, owner) -> (str, str):
 
 def get_all_contacts(owner) -> []:
     s = Session()
-    phones = s.query(Contact).filter(Contact.user_id == owner).all()
-    return phones
+    contacts = s.query(Contact).filter(Contact.user_id == owner).all()
+    return contacts
 
 
 def delete_contact(name, owner) -> bool:
