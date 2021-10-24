@@ -26,6 +26,6 @@ def get_all_contacts(owner) -> []:
 
 def delete_contact(name, owner) -> bool:
     s = Session()
-    result = s.query(Contact).filter(Contact.name == name).delete()
+    result = s.query(Contact).filter(and_(Contact.name == name, Contact.user_id == owner)).delete()
     if result != 0:
         return True

@@ -3,4 +3,5 @@ Commands ⌨️:
 /add - Add new contact
 /get - Get contact
 /getall - Get all contacts
-/delete - Delete contact'''
+/delete - Delete contact
+/json - download all contacts in json format'''

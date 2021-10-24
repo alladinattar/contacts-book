@@ -41,11 +41,20 @@ def start_bot() -> None:
         fallbacks=[CommandHandler('cancel', handlers.cancel)],
     )
 
+    delete_contact_handler = ConversationHandler(
+        entry_points=[MessageHandler(Filters.regex('Delete contact'), handlers.start_delete_contact)],
+        states={
+            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command, handlers.delete_one)],
+        },
+
+        fallbacks=[CommandHandler('cancel', handlers.cancel)],
+    )
     get_all_contacts = MessageHandler(Filters.regex('Get all contacts'), handlers.get_all)
 
     dispatcher.add_handler(get_contact_handler)
     dispatcher.add_handler(add_contact_handler)
     dispatcher.add_handler(get_all_contacts)
+    dispatcher.add_handler(delete_contact_handler)
 
     start_handler = CommandHandler('start', start)
     dispatcher.add_handler(start_handler)

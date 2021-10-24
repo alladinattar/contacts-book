@@ -1,5 +1,5 @@
 from telegram.ext import CallbackContext, ConversationHandler
-from actions import get_contact, add_contact, get_all_contacts
+from actions import get_contact, add_contact, get_all_contacts, delete_contact
 from telegram import Update, ReplyKeyboardRemove
 import logging
 
@@ -44,16 +44,35 @@ def add_name(update: Update, context: CallbackContext) -> int:
 def add_phone(update: Update, context: CallbackContext) -> int:
     context.user_data['phone'] = update.message.text
     add_contact(context.user_data['name'], context.user_data['phone'], update.message.from_user.id)
+    logger.info('add_contact, name: {}, phone: {}'.format(context.user_data['name'], context.user_data['phone']))
     context.user_data.clear()
     update.message.reply_text('New contact added!!!')
     return ConversationHandler.END
 
 
+def start_delete_contact(update: Update, context: CallbackContext) -> int:
+    logger.info('delete_contact, user: {}'.format(update.message.from_user.id))
+    update.message.reply_text('Please, enter name of contact')
+    return NAME
+
+
+def delete_one(update: Update, context: CallbackContext) -> int:
+    name = update.message.text
+    owner = update.message.from_user.id
+    result = delete_contact(name, owner)
+    logger.info('delete_one_contact, name: {}, owner: {}'.format(name, owner))
+    if result:
+        update.message.reply_text('Contact deleted!!!')
+    update.message.reply_text('No such contact')
+    return ConversationHandler.END
+
+
 def get_all(update: Update, context: CallbackContext) -> int:
+    logger.info('get_all_contact, user: {}'.format(update.message.from_user.id))
     all_contacts = ''
     contacts = get_all_contacts(update.message.from_user.id)
     for i in range(len(contacts)):
-        all_contacts += '{}. {} - {}\n'.format(i+1, contacts[i].name, contacts[i].phone)
+        all_contacts += '{}. {} - {}\n'.format(i + 1, contacts[i].name, contacts[i].phone)
     update.message.reply_text(all_contacts)
 
 
