@@ -51,10 +51,13 @@ def start_bot() -> None:
     )
     get_all_contacts = MessageHandler(Filters.regex('Get all contacts'), handlers.get_all)
 
+    json_handler = CommandHandler('json', handlers.json_handler)
+
     dispatcher.add_handler(get_contact_handler)
     dispatcher.add_handler(add_contact_handler)
     dispatcher.add_handler(get_all_contacts)
     dispatcher.add_handler(delete_contact_handler)
+    dispatcher.add_handler(json_handler)
 
     start_handler = CommandHandler('start', start)
     dispatcher.add_handler(start_handler)

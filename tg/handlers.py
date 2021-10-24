@@ -2,6 +2,7 @@ from telegram.ext import CallbackContext, ConversationHandler
 from actions import get_contact, add_contact, get_all_contacts, delete_contact
 from telegram import Update, ReplyKeyboardRemove
 import logging
+import json
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
@@ -74,6 +75,19 @@ def get_all(update: Update, context: CallbackContext) -> int:
     for i in range(len(contacts)):
         all_contacts += '{}. {} - {}\n'.format(i + 1, contacts[i].name, contacts[i].phone)
     update.message.reply_text(all_contacts)
+
+
+def json_handler(update: Update, context: CallbackContext) -> int:
+    logger.info('json, user: {}'.format(update.message.from_user.id))
+    with open('{}.json'.format(update.message.from_user.id), 'w') as file:
+        contacts = get_all_contacts(update.message.from_user.id)
+        contacts_json = {}
+        for i in contacts:
+            contacts_json[i.id] = {'name': i.name, 'phone': i.phone}
+        json_data = json.dumps(contacts_json)
+        file.write(json_data)
+    filename = '{}.json'.format(update.message.from_user.id)
+    update.message.reply_document(document=open(filename))
 
 
 def cancel(update: Update, context: CallbackContext) -> int:
