@@ -1,5 +1,4 @@
-from tg import start_bot
-
+from tg import tg
 
 if __name__ == "__main__":
-    start_bot()
+    tg.start_bot()
