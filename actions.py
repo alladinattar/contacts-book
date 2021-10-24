@@ -1,6 +1,7 @@
 from models import Session, Contact
 from sqlalchemy import and_
 
+
 def add_contact(name, phone, owner):
     s = Session()
     contact = Contact(name=name, phone=phone, user_id=owner)

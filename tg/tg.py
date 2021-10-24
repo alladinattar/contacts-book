@@ -7,19 +7,13 @@ from telegram_consts import WELCOME_MESSAGE
 from telegram import ReplyKeyboardMarkup, Update, ReplyKeyboardRemove
 
 
-
-def start(update, context):
+def start(update: Update, context: CallbackContext):
     reply_keyboard = [['Get contact', 'Add contact'], ['Delete contact', 'Get all contacts']]
     update.message.reply_text(WELCOME_MESSAGE,
                               reply_markup=ReplyKeyboardMarkup(
                                   reply_keyboard, one_time_keyboard=False, input_field_placeholder='Select action'
                               ),
                               )
-
-
-
-
-
 
 
 def start_bot() -> None:

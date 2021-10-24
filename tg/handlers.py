@@ -1,17 +1,16 @@
 from . import tg
 from telegram.ext import CallbackContext, ConversationHandler
-from actions import get_contact
+from actions import get_contact, add_contact
 from telegram import Update, ReplyKeyboardRemove
 import logging
-
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=logging.INFO
 )
 
-
 NAME, PHONE = range(2)
 logger = logging.getLogger(__name__)
+
 
 def start_get_contact(update: Update, context: CallbackContext) -> int:
     update.message.reply_text('Please, enter name of contact')
@@ -39,11 +38,16 @@ def start_add_contact(update: Update, context: CallbackContext) -> int:
 
 def add_name(update: Update, context: CallbackContext) -> int:
     context.user_data['name'] = update.message.text
+    update.message.reply_text("Please, enter contact number:")
     return PHONE
 
 
 def add_phone(update: Update, context: CallbackContext) -> int:
     context.user_data['phone'] = update.message.text
+    add_contact(context.user_data['name'], context.user_data['phone'], update.message.from_user.id)
+    context.user_data.clear()
+    update.message.reply_text('New contact added!!!')
+    return ConversationHandler.END
 
 
 def cancel(update: Update, context: CallbackContext) -> int:
