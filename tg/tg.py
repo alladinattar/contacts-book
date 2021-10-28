@@ -3,8 +3,8 @@ from . import handlers
 import logging
 from telegram.ext import Updater, Filters, CallbackContext
 from telegram.ext import CommandHandler, ConversationHandler, MessageHandler
-from telegram_consts import WELCOME_MESSAGE
-from telegram import ReplyKeyboardMarkup, Update, ReplyKeyboardRemove
+from tg.telegram_consts import WELCOME_MESSAGE
+from telegram import ReplyKeyboardMarkup, Update
 
 
 def start(update: Update, context: CallbackContext):

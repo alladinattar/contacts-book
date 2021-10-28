@@ -1,6 +1,6 @@
 from telegram.ext import CallbackContext, ConversationHandler
-from actions import get_contact, add_contact, get_all_contacts, delete_contact
-from telegram import Update, ReplyKeyboardRemove
+from domain.actions import get_contact, add_contact, get_all_contacts, delete_contact
+from telegram import Update
 import logging
 import json
 
