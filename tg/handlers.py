@@ -25,7 +25,7 @@ def find_contact(update: Update, context: CallbackContext) -> int:
     logger.info('get_one_contact, name: {}, owner: {}'.format(name, owner))
     if phone is not None:
         update.message.reply_text('{}: {}'.format(name, phone))
-        return
+        return ConversationHandler.END
     update.message.reply_text("Cannot find this contact")
     return ConversationHandler.END
 
@@ -64,6 +64,7 @@ def delete_one(update: Update, context: CallbackContext) -> int:
     logger.info('delete_one_contact, name: {}, owner: {}'.format(name, owner))
     if result:
         update.message.reply_text('Contact deleted!!!')
+        return ConversationHandler.END
     update.message.reply_text('No such contact')
     return ConversationHandler.END
 
@@ -72,9 +73,13 @@ def get_all(update: Update, context: CallbackContext) -> int:
     logger.info('get_all_contact, user: {}'.format(update.message.from_user.id))
     all_contacts = ''
     contacts = get_all_contacts(update.message.from_user.id)
-    for i in range(len(contacts)):
-        all_contacts += '{}. {} - {}\n'.format(i + 1, contacts[i].name, contacts[i].phone)
-    update.message.reply_text(all_contacts)
+    if len(contacts) != 0:
+        for i in range(len(contacts)):
+            all_contacts += '{}. {} - {}\n'.format(i + 1, contacts[i].name, contacts[i].phone)
+            update.message.reply_text(all_contacts)
+            return ConversationHandler.END
+    update.message.reply_text("No contacts")
+    return ConversationHandler.END
 
 
 def json_handler(update: Update, context: CallbackContext) -> int:
@@ -95,7 +100,10 @@ def cancel(update: Update, context: CallbackContext) -> int:
     logger.info("User %s canceled the conversation.", user.first_name)
     context.user_data.clear()
     update.message.reply_text(
-        'Bye! I hope we can talk again some day.', reply_markup=ReplyKeyboardRemove()
+        'Bye! I hope we can talk again some day.'
     )
 
     return ConversationHandler.END
+
+
+

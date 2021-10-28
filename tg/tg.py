@@ -25,7 +25,7 @@ def start_bot() -> None:
     get_contact_handler = ConversationHandler(
         entry_points=[MessageHandler(Filters.regex("Get contact"), handlers.start_get_contact)],
         states={
-            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command, handlers.find_contact)],
+            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex('^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.find_contact)],
         },
 
         fallbacks=[CommandHandler('cancel', handlers.cancel)],
@@ -34,8 +34,8 @@ def start_bot() -> None:
     add_contact_handler = ConversationHandler(
         entry_points=[MessageHandler(Filters.regex("Add contact"), handlers.start_add_contact)],
         states={
-            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command, handlers.add_name)],
-            handlers.PHONE: [MessageHandler(Filters.text & ~Filters.command, handlers.add_phone)]
+            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex('^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.add_name)],
+            handlers.PHONE: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex('^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.add_phone)]
         },
 
         fallbacks=[CommandHandler('cancel', handlers.cancel)],
@@ -44,7 +44,7 @@ def start_bot() -> None:
     delete_contact_handler = ConversationHandler(
         entry_points=[MessageHandler(Filters.regex('Delete contact'), handlers.start_delete_contact)],
         states={
-            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command, handlers.delete_one)],
+            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex('^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.delete_one)],
         },
 
         fallbacks=[CommandHandler('cancel', handlers.cancel)],
