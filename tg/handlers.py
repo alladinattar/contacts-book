@@ -73,11 +73,12 @@ def get_all(update: Update, context: CallbackContext) -> int:
     logger.info('get_all_contact, user: {}'.format(update.message.from_user.id))
     all_contacts = ''
     contacts = get_all_contacts(update.message.from_user.id)
+    print(len(contacts))
     if len(contacts) != 0:
         for i in range(len(contacts)):
             all_contacts += '{}. {} - {}\n'.format(i + 1, contacts[i].name, contacts[i].phone)
-            update.message.reply_text(all_contacts)
-            return ConversationHandler.END
+        update.message.reply_text(all_contacts)
+        return ConversationHandler.END
     update.message.reply_text("No contacts")
     return ConversationHandler.END
 
