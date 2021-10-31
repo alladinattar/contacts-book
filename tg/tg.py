@@ -25,28 +25,33 @@ def start_bot() -> None:
     get_contact_handler = ConversationHandler(
         entry_points=[MessageHandler(Filters.regex("Get contact"), handlers.start_get_contact)],
         states={
-            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex('^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.find_contact)],
+            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex(
+                '^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.find_contact)],
         },
-
+        allow_reentry=True,
         fallbacks=[CommandHandler('cancel', handlers.cancel)],
     )
 
     add_contact_handler = ConversationHandler(
         entry_points=[MessageHandler(Filters.regex("Add contact"), handlers.start_add_contact)],
         states={
-            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex('^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.add_name)],
-            handlers.PHONE: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex('^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.add_phone)]
+            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex(
+                '^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.add_name)],
+            handlers.PHONE: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex(
+                '^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.add_phone)]
         },
-
+        allow_reentry=True,
         fallbacks=[CommandHandler('cancel', handlers.cancel)],
     )
 
     delete_contact_handler = ConversationHandler(
         entry_points=[MessageHandler(Filters.regex('Delete contact'), handlers.start_delete_contact)],
         states={
-            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex('^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.delete_one)],
+            handlers.NAME: [MessageHandler(Filters.text & ~Filters.command & ~Filters.regex(
+                '^(Get contact|Add contact|Get all contacts|Delete contact|)$'), handlers.delete_one)],
         },
 
+        allow_reentry=True,
         fallbacks=[CommandHandler('cancel', handlers.cancel)],
     )
     get_all_contacts = MessageHandler(Filters.regex('Get all contacts'), handlers.get_all)

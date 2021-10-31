@@ -52,7 +52,7 @@ def add_phone(update: Update, context: CallbackContext) -> int:
 
 
 def start_delete_contact(update: Update, context: CallbackContext) -> int:
-    logger.info('delete_contact, user: {}'.format(update.message.from_user.id))
+    logger.info('start_delete_contact, user: {}'.format(update.message.from_user.id))
     update.message.reply_text('Please, enter name of contact')
     return NAME
 
