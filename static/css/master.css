@@ -1,0 +1,109 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100vh;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.wrapper {
+   display: grid;
+   grid-template-areas:
+   "H  H"
+   "C  I ";
+
+   grid-column-gap: 10px;
+
+}
+
+a{
+  text-decoration: none;
+  color: white;
+}
+
+.wrapper .header{
+  font-family: "Roboto";
+  grid-area: H;
+  display: flex;
+  font-size: 25px;
+  color: white;
+  background-color: #FC6565;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 40px;
+
+}
+
+.header li{
+  display: inline-block;
+  margin: 0px 20px;
+}
+
+.logo {
+}
+
+.menu{
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+a:hover{
+  text-decoration: underline;
+}
+
+.helper{
+  grid-area: I;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10vh;
+}
+
+.helper img{
+  width: 50%;
+}
+
+.content{
+  grid-area: C;
+  text-align: right;
+  padding-top: 25vh;
+  padding-left: 30%;
+  font-size: 2rem;
+}
+
+@media (max-width: 480px) {
+
+  .wrapper {
+    display: grid;
+    grid-template-areas:
+    "H H"
+    "C C";
+
+    grid-column-gap: 10px;
+    grid-row-gap: 1em;
+  }
+  .helper{
+    display: none;
+  }
+  .content{
+    text-align: center;
+    padding: 60px;
+    background-image: url("../imgs/phone.jpg");
+    background-position: top center;
+  }
+
+  .header{
+    flex-wrap: wrap;
+  }
+
+}

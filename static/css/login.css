@@ -1,0 +1,87 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;1,500&display=swap');
+html {
+    font-size: 100%;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+    min-height: 100vh;
+}
+
+*, *::before, *::after {
+    box-sizing: inherit;
+}
+
+.wrapper{
+  display: grid;
+  grid-template-areas:
+  "H"
+  "I";
+}
+
+.header{
+  grid-area: H;
+  height: 100px;
+}
+
+.wrapper .header button{
+  width: 5%;
+  height: 50%;
+  margin: 50px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: $btnColor;
+  color: black;
+  border-radius: 8px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+
+}
+
+.inputform{
+  padding-top: 90px;
+  height: 100vh;
+}
+
+form {
+  /* Расположим форму по центру страницы */
+  margin: 0 auto;
+  width: 400px;
+  /* Определим контур формы */
+  padding: 1em;
+  border: 1px solid #CCC;
+  border-radius: 1em;
+  text-align: center;
+  padding-top: 30px;
+  height: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+form input{
+  margin-bottom: 20px;
+  width: 80%;
+  height: 50px;
+  font-size: 1.5rem;
+  box-shadow:0 0 15px 4px rgba(0,0,0,0.06);
+  border: 0;
+  border-radius:10px;
+
+}
+
+.inputform button{
+  margin-top: 50px;
+  text-decoration: none;
+  width: 40%;
+  height: 40px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: $btnColor;
+  color: black;
+  border-radius: 8px;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.18);
+}
