@@ -10,16 +10,21 @@
 <body>
   <div class="wrapper">
     <div class="header">
-      <a href="/">
-        <button>Home</button>
-      </a>
+      <div class="home button">
+        <a href="/">
+          Home
+        </a>
+
+      </div>
 
     </div>
     <div class="inputform">
-      <form action="auth/login" method="post">
-        <input type="text" placeholder="Login">
-        <input type="password" placeholder="Password">
-        <button type="submit">Login</button>
+      <form action="auth/login" method="post" id="form">
+        <input type="text" placeholder="Login" name="username">
+        <input type="password" placeholder="Password" name="password">
+        <div class="button">
+          <a type="submit" onclick="document.getElementById('form').submit(); return false;">Login</a>
+        </div>
       </form>
 
     </div>
