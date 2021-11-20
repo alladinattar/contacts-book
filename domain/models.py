@@ -6,6 +6,13 @@ engine = create_engine("postgresql+psycopg2://postgres:123@localhost/contacts", 
 base = declarative_base()
 
 
+class User(base):
+    __tablename__ = 'users'
+    id = Column(Integer, primary_key=True, unique=True, autoincrement=True)
+    username = Column(String(100), nullable=False)
+    password = Column(String(100), nullable=False)
+
+
 class Contact(base):
     __tablename__ = 'contacts'
 
