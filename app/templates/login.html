@@ -1,24 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="../static/css/login.css">
-  <title>Document</title>
-</head>
-<body>
-  <div class="wrapper">
-    <div class="header">
-      <div class="home button">
-        <a href="/">
-          Home
-        </a>
-
-      </div>
-
-    </div>
-    <div class="inputform">
+{% extends "login_base.html" %}
+{%  block content %}
       <form action="auth/login" method="post" id="form">
         <input type="text" placeholder="Login" name="username">
         <input type="password" placeholder="Password" name="password">
@@ -26,8 +7,4 @@
           <a type="submit" onclick="document.getElementById('form').submit(); return false;">Login</a>
         </div>
       </form>
-
-    </div>
-  </div>
-</body>
-</html>
+{% endblock %}
