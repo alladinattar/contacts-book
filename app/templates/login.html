@@ -1,8 +1,8 @@
 {% extends "login_base.html" %}
 {%  block content %}
       <form action="auth/login" method="post" id="form">
-        <input type="text" placeholder="Login" name="username">
-        <input type="password" placeholder="Password" name="password">
+          {{ form.username(placeholder="Login") }}
+          {{ form.username(placeholder="Password") }}
         <div class="button">
           <a type="submit" onclick="document.getElementById('form').submit(); return false;">Login</a>
         </div>

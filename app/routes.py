@@ -1,7 +1,6 @@
 from flask import render_template, request, session, redirect, url_for
 from app import app
-from domain.auth import check_user
-
+from app.forms import LoginForm
 
 @app.route("/")
 def home():
@@ -9,11 +8,18 @@ def home():
 
 @app.route("/login")
 def login():
-    return render_template("login.html")
+    form = LoginForm()
+    return render_template("login.html", form=form)
 
 @app.route("/signup")
 def signup():
     return render_template("register.html")
+
+@app.route('/auth/signup', methods=["POST"])
+def auth_signup():
+    username = request.form["username"]
+    password = request.form["password"]
+    cofirm = request.form['confirm']
 
 
 @app.route("/auth/login", methods=["POST"])
@@ -22,12 +28,11 @@ def auth_login():
         username = request.form["username"]
         password = request.form["password"]
         if username in session:
-            return redirect(url_for('/{}'.format(username)))
+            return redirect(url_for('/'))
         if check_user(username, password):
             session['authorized'] = 'true'
-            return url_for('/{}'.format(username))
+            return url_for('/')
 
 
-
-    return "Hello world"
+    return redirect('/')
 

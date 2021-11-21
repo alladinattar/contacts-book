@@ -1,9 +1,9 @@
 {% extends "login_base.html" %}
 {%  block content %}
-      <form action="auth/login" method="post" id="form">
+      <form action="auth/signup" method="post" id="form">
         <input type="text" placeholder="Login" name="username">
         <input type="password" placeholder="Password" name="password">
-        <input type="text" placeholder="Confirm" name="confirm">
+        <input type="password" placeholder="Confirm" name="confirm">
         <div class="button">
           <a type="submit" onclick="document.getElementById('form').submit(); return false;">Register</a>
         </div>
