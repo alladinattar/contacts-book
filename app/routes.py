@@ -1,4 +1,4 @@
-from flask import render_template, request, session, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for
 from app import app
 from app.forms import LoginForm, SignUpForm
 
@@ -19,6 +19,8 @@ def signup():
     form = SignUpForm()
     if form.validate_on_submit():
         return redirect(url_for('home'))
+
+    return redirect(url_for('login'))
 
 
     return render_template("register.html", form=form)

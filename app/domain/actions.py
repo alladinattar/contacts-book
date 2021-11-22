@@ -1,4 +1,4 @@
-from .models import Session, Contact
+from app.models import Session, Contact
 from sqlalchemy import and_
 
 
