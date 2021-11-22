@@ -1,11 +1,10 @@
 {% extends "login_base.html" %}
 {%  block content %}
-      <form action="auth/signup" method="post" id="form">
-        <input type="text" placeholder="Login" name="username">
-        <input type="password" placeholder="Password" name="password">
-        <input type="password" placeholder="Confirm" name="confirm">
-        <div class="button">
-          <a type="submit" onclick="document.getElementById('form').submit(); return false;">Register</a>
-        </div>
+      <form action="" method="post" id="form" novalidate>
+          {{ form.hidden_tag() }}
+          {{ form.username(placeholder="Username") }}
+          {{ form.password(placeholder="Password") }}
+          {{ form.confirm(placeholder="Confirm Password") }}
+          {{ form.submit(class="button") }}
       </form>
 {% endblock %}
