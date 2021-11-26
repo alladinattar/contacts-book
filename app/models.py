@@ -10,7 +10,7 @@ def load_user(id):
 
 
 class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     username = db.Column(db.String(100), index=True, unique=True)
     password_hash = db.Column(db.String(200))
     contacts = db.relationship('Contact', backref='owner', lazy='dynamic')

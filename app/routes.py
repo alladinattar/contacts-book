@@ -19,9 +19,7 @@ def login():
 
     form = LoginForm()
     if form.validate_on_submit():
-        print('Hello world')
         user = User.query.filter_by(username=form.username.data).first()
-        print(user.username)
         if user is None or not user.check_password(form.password.data):
             flash("Invalid password or login")
             return redirect(url_for('login'))
@@ -47,5 +45,4 @@ def signup():
         db.session.commit()
         flash("You are registered")
         return redirect(url_for('login'))
-    flash('Invalid data')
     return render_template("register.html", form=form)

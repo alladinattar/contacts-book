@@ -3,8 +3,29 @@
       <form action="" method="post" id="form" novalidate>
           {{ form.hidden_tag() }}
           {{ form.username(placeholder="Username") }}
+          {% for error in form.username.errors %}
+          <ul>
+              <li style="color: red;">{{ error }}</li>
+          </ul>
+          {% endfor %}
           {{ form.password(placeholder="Password") }}
           {{ form.confirm(placeholder="Confirm Password") }}
+
+          {% for error in form.confirm.errors %}
+          <ul>
+              <li style="color: red;">{{ error }}</li>
+          </ul>
+          {% endfor %}
           {{ form.submit(class="button") }}
+
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+          {% endwith %}
       </form>
 {% endblock %}
