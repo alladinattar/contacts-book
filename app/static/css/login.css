@@ -111,3 +111,12 @@ form .button{
   background: -moz-linear-gradient(45deg, rgb(252, 101, 101) 20%, rgb(86, 181, 184));
   background: linear-gradient(45deg, rgb(252, 101, 101) 20%, rgb(86, 181, 184));
 }
+
+li{
+  list-style-type: none;
+  font-family: Roboto;
+}
+ul{
+  margin: 0;
+  padding: 0;
+}

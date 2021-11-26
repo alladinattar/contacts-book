@@ -1,9 +1,18 @@
 {% extends "login_base.html" %}
 {%  block content %}
-      <form action="" method="post" id="form">
+      <form action="" method="post" id="form" novalidate>
           {{ form.hidden_tag() }}
           {{ form.username(placeholder="Login") }}
           {{ form.password(placeholder="Password") }}
           {{ form.submit(class="button", onclick="document.getElementById('form').submit(); return false;")}}
+          {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <ul>
+            {% for message in messages %}
+              <li>{{ message }}</li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+          {% endwith %}
       </form>
 {% endblock %}

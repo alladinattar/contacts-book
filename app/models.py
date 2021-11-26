@@ -1,13 +1,19 @@
 from app import db
 from hashlib import md5
+from flask_login import UserMixin
+from app import login
 
 
-class User(db.Model):
+@login.user_loader
+def load_user(id):
+    return User.query.get(int(id))
+
+
+class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True, unique=True)
     username = db.Column(db.String(100), index=True, unique=True)
     password_hash = db.Column(db.String(200))
     contacts = db.relationship('Contact', backref='owner', lazy='dynamic')
-
 
     def set_password(self, password: str):
         self.password_hash = md5(password.encode()).hexdigest()
