@@ -2,6 +2,7 @@ from app import db
 from hashlib import md5
 from flask_login import UserMixin
 from app import login
+import json
 
 
 @login.user_loader
@@ -29,3 +30,9 @@ class Contact(db.Model):
     name = db.Column(db.String(200), index=True)
     phone = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+    def serialize(self):
+        return {
+            'name': self.name,
+            'phone': self.phone
+        }

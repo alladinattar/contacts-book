@@ -1,9 +1,11 @@
 from flask import render_template, request, redirect, url_for, flash
 from app import app
-from app.models import User
+from app.models import User, Contact
 from app.forms import LoginForm, SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
+
+import json
 
 
 @app.route("/")
@@ -46,3 +48,11 @@ def signup():
         flash("You are registered")
         return redirect(url_for('login'))
     return render_template("register.html", form=form)
+
+
+@app.route("/api/get_contacts")
+@login_required
+def get_contacts():
+    contacts = Contact.query.filter_by(user_id=current_user.id).all()
+    contacts_for_api = [contact.serialize() for contact in contacts]
+    return json.dumps(contacts_for_api)
