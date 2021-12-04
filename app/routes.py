@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, flash
+from flask import render_template, request, redirect, url_for, flash, make_response
 from app import app
 from app.models import User, Contact
 from app.forms import LoginForm, SignUpForm
@@ -55,4 +55,6 @@ def signup():
 def get_contacts():
     contacts = Contact.query.filter_by(user_id=current_user.id).all()
     contacts_for_api = [contact.serialize() for contact in contacts]
-    return json.dumps(contacts_for_api)
+    resp = make_response(json.dumps(contacts_for_api))
+    resp.headers["content-type"] = "text/json"
+    return resp
