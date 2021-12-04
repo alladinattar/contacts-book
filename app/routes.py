@@ -52,9 +52,16 @@ def signup():
 
 @app.route("/api/get_contacts")
 @login_required
-def get_contacts():
+def api_get_contacts():
     contacts = Contact.query.filter_by(user_id=current_user.id).all()
     contacts_for_api = [contact.serialize() for contact in contacts]
     resp = make_response(json.dumps(contacts_for_api))
     resp.headers["content-type"] = "text/json"
     return resp
+
+
+@app.route('/get_contacts')
+@login_required
+def get_contacts():
+    contacts = Contact.query.filter_by(user_id=current_user.id).all()
+    return render_template('all_contacts.html', contacts=contacts)

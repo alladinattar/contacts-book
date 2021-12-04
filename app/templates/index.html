@@ -1,32 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
+
   <div class="wrapper">
-    <div class="header">
-      <img class="logo" width="62px" src="../static/imgs/contact-book.png" alt="">
-      <ul class="menu">
-        {% if current_user.is_anonymous %}
-          <div class="left_menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="about">About</a></li>
-          </div>
-
-          <div class="auth">
-            <li><a href="login">Login</a></li>
-            <li><a href="signup">Sign Up</a></li>
-          </div>
-        {% else %}
-          <div class="left_menu">
-            <li><a href="/">Home</a></li>
-            <li><a href="add">Add contact</a></li>
-            <li><a href="get">Get contacts</a></li>
-          </div>
-
-          <div class="auth">
-            <li><a href="logout">Logout</a></li>
-          </div>
-        {% endif %}
-      </ul>
-    </div>
     <div class="content">
       <h2>It is a simple <br> contact<br> book</h2>
       <div class="regbutton">

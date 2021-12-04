@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="../static/css/master.css">
+    <link rel="stylesheet" href="../static/css/all_contacts.css">
     <title>Document</title>
     {% endblock %}
 </head>
@@ -35,9 +35,29 @@
             <li><a href="logout">Logout</a></li>
         </div>
         {% endif %}
+
     </ul>
+
 </div>
-{% block content %}{% endblock %}
+
+<div class="wrapper">
+    <div class="flex-container">
+        <table>
+            <tr>
+                <th>id</th>
+                <th>Name</th>
+                <th>Phone</th>
+            </tr>
+            <tr>
+                {% for contact in contacts %}
+                <td>{{ contact.id }}</td>
+                <td>{{ contact.name}}</td>
+                <td>{{contact.phone}}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
 </div>
+
 </body>
 </html>
