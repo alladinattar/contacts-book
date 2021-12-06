@@ -64,6 +64,7 @@ def api_get_contacts():
 @login_required
 def get_contacts():
     form = SearchForm()
+    form
     if form.validate_on_submit():
         contacts = Contact.query.filter_by(user_id=current_user.id).filter_by(name=form.search.data).all()
         return render_template('all_contacts.html', contacts=contacts, form=form)
@@ -84,6 +85,7 @@ def add_contact():
             return "Contact already exists"
         db.session.add(contact)
         db.session.commit()
-        return "Contact was added"
+        flash("User successfully added!!!")
+        return redirect(url_for('add_contact'))
 
     return render_template('new_contact.html', form=form)

@@ -13,3 +13,8 @@ form .button{
 .header{
     margin-bottom: 150px;
 }
+
+li{
+    list-style: none;
+    color: #3A7734;
+}
