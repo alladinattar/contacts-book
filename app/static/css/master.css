@@ -40,7 +40,6 @@ body {
   align-items: center;
   padding: 0px 40px;
   min-height: 100px;
-
 }
 
 .header li{
@@ -80,6 +79,7 @@ a:hover{
   padding-top: 15vh;
   padding-left: 30%;
   font-size: 2rem;
+  color: #101C31;
 }
 
 

@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash, make_response
 from app import app
 from app.models import User, Contact
-from app.forms import LoginForm, SignUpForm
+from app.forms import LoginForm, SignUpForm, SearchForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
 
@@ -63,5 +63,6 @@ def api_get_contacts():
 @app.route('/get_contacts')
 @login_required
 def get_contacts():
+    form = SearchForm()
     contacts = Contact.query.filter_by(user_id=current_user.id).all()
-    return render_template('all_contacts.html', contacts=contacts)
+    return render_template('all_contacts.html', contacts=contacts, form = form)

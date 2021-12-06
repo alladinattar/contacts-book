@@ -31,17 +31,20 @@ table {
     border-collapse: collapse;
     border: 2px solid rgb(200,200,200);
     letter-spacing: 1px;
-    font-size: 0.8rem;
+    font-size: 1rem;
+    font-family: Roboto;
     width: 70%;
 }
 
 td, th {
     border: 1px solid rgb(190,190,190);
     padding: 10px 20px;
+
 }
 
 th {
-    background-color: rgb(235,235,235);
+    background-color: #101C31;
+    color: white;
 }
 
 td {
@@ -98,5 +101,52 @@ a:hover{
 
 .flex-container{
     display: flex;
-    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    flex-direction: column;
+}
+
+.search{
+    width:20%;
+    margin-bottom: 40px;
+
+}
+
+
+
+form{
+    display: flex;
+    width: 40%;
+    gap: 10px;
+}
+
+
+form .button:hover{
+    background-color: rgb(36, 61, 76);
+}
+form .button{
+    display: inline;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.8rem;
+    cursor: pointer;
+    background-color: #142534;
+    width: 20%;
+    color: white;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    -webkit-box-shadow: 10px 11px 17px -4px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 10px 11px 17px -4px rgba(34, 60, 80, 0.2);
+    box-shadow: 10px 11px 17px -4px rgba(34, 60, 80, 0.2);
+}
+
+form input{
+    display: inline;
+    width: 80%;
+    height: 40px;
+    font-size: 1.2rem;
+    box-shadow:0 0 15px 15px rgba(0,0,0,0.14);
+    border: 0px;
+    border-radius:10px;
+
 }
