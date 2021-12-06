@@ -1,0 +1,15 @@
+
+@import "all_contacts.css";
+
+form{
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+form .button{
+    font-size: 1.2rem;
+}
+.header{
+    margin-bottom: 150px;
+}

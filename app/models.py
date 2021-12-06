@@ -26,7 +26,7 @@ class User(UserMixin, db.Model):
 
 
 class Contact(db.Model):
-    id = db.Column(db.Integer, primary_key=True, unique=True)
+    id = db.Column(db.Integer, primary_key=True, unique=True, autoincrement=True)
     name = db.Column(db.String(200), index=True)
     phone = db.Column(db.String(200))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))

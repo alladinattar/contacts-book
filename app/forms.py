@@ -25,3 +25,9 @@ class SignUpForm(FlaskForm):
 class SearchForm(FlaskForm):
     search = StringField('Search', validators=[DataRequired()])
     submit = SubmitField('Search')
+
+
+class NewContactForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+    phone = StringField('phone', validators=[DataRequired()])
+    submit = SubmitField('Add')

@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, flash, make_response
 from app import app
 from app.models import User, Contact
-from app.forms import LoginForm, SignUpForm, SearchForm
+from app.forms import LoginForm, SignUpForm, SearchForm, NewContactForm
 from flask_login import current_user, login_user, logout_user, login_required
 from app import db
 
@@ -71,3 +71,16 @@ def get_contacts():
     form = SearchForm()
     contacts = Contact.query.filter_by(user_id=current_user.id).all()
     return render_template('all_contacts.html', contacts=contacts, form=form)
+
+
+@app.route('/add_contact', methods=["GET", 'POST'])
+@login_required
+def add_contact():
+    form = NewContactForm()
+    if form.validate_on_submit():
+        contact = Contact(name=form.name.data, user_id=current_user.id, phone=form.phone.data)
+        db.session.add(contact)
+        db.session.commit()
+        return "Contact was added"
+
+    return render_template('new_contact.html', form=form)
