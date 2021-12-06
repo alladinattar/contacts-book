@@ -79,6 +79,9 @@ def add_contact():
     form = NewContactForm()
     if form.validate_on_submit():
         contact = Contact(name=form.name.data, user_id=current_user.id, phone=form.phone.data)
+        contact_checked = Contact.query.filter_by(phone=form.phone.data).first()
+        if contact_checked is not None:
+            return "Contact already exists"
         db.session.add(contact)
         db.session.commit()
         return "Contact was added"

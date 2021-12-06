@@ -35,6 +35,16 @@
             {{ form.name(placeholder="Alex") }}
             {{ form.phone(placeholder="89851344925") }}
             {{ form.submit(class="button", onclick="document.getElementById('form').submit(); return false;")}}
+
+            {% with messages = get_flashed_messages() %}
+            {% if messages %}
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+            {% endwith %}
         </form>
     </div>
 </div>
