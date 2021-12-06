@@ -53,12 +53,14 @@
                 <th>Name</th>
                 <th>Phone</th>
             </tr>
+            {% for contact in contacts %}
             <tr>
-                {% for contact in contacts %}
                 <td>{{ contact.id }}</td>
                 <td>{{ contact.name}}</td>
                 <td>{{contact.phone}}</td>
-                {% endfor %}
+            </tr>
+            {% endfor %}
+            <tr>
             </tr>
         </table>
     </div>
