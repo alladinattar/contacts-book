@@ -44,6 +44,7 @@
     <div class="flex-container">
 
         <form action="" method="post" id="form" novalidate>
+            {{ form.hidden_tag() }}
             {{ form.search() }}
             {{ form.submit(class="button", onclick="document.getElementById('form').submit(); return false;")}}
         </form>

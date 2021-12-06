@@ -60,9 +60,14 @@ def api_get_contacts():
     return resp
 
 
-@app.route('/get_contacts')
+@app.route('/get_contacts', methods=["GET", "POST"])
 @login_required
 def get_contacts():
     form = SearchForm()
+    if form.validate_on_submit():
+        contacts = Contact.query.filter_by(user_id=current_user.id).filter_by(name=form.search.data).all()
+        return render_template('all_contacts.html', contacts=contacts, form=form)
+
+    form = SearchForm()
     contacts = Contact.query.filter_by(user_id=current_user.id).all()
-    return render_template('all_contacts.html', contacts=contacts, form = form)
+    return render_template('all_contacts.html', contacts=contacts, form=form)
